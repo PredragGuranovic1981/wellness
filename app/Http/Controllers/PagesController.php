@@ -14,10 +14,6 @@ class PagesController extends Controller
       return view('pages.about');
     }
 
-    public function getGalery(){
-      return view('pages.galery');
-    }
-
     public function getTreatment(){
       return view('pages.treatment');
     }

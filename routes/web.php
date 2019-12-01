@@ -10,14 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
+// rute za stranice
 Route::get('/', 'PagesController@getHome');
 Route::get('/about', 'PagesController@getAbout');
-Route::get('/galery', 'PagesController@getGalery');
 Route::get('/treatment', 'PagesController@getTreatment');
 Route::get('/contact', 'PagesController@getContact');
 Route::get('treatment/{id}', 'UserController@show');
@@ -30,15 +25,18 @@ Route::get('/galery', 'UsersController@index');
 Route::get('/treatment', 'TreatmentsController@index');
 Route::resource('services', 'TreatmentsController');
 Route::get('/show/{id}','TreatmentsController@show');
-// Route::get('treatment/{id}', 'UserController@show');
+Route::resource('client/reservation', 'ReservationsController');
 
 
 // rute za admina
 Route::get('admin/routes', 'HomeController@admin')->middleware('admin');
-// Route::get('/edit', 'AdminTreatmentsController@show');
-// Route::post('/edit','AdminTreatmentsController@edit')->name('edit');
 Route::get('/showtreatmen', 'AdminTreatmentsController@index')->name('admin');
+Route::get('/showemployes', 'EmployesController@index')->name('admin');
+// Route::get('/showreservations', 'ReservationsController@index')->name('admin');
+Route::get('/message', 'MessageController@index')->name('admin');
 Route::resource('admin/services', 'AdminTreatmentsController');
+Route::resource('admin', 'EmployesController');
+Route::resource('client', 'MessageController');
 
 // ruta za promenu lozinke
 Route::get('/changePassword','HomeController@showChangePasswordForm');

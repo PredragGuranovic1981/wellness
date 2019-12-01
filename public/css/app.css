@@ -11100,3 +11100,27 @@ a.text-dark:focus {
   }
 }
 
+.navigacija {
+  background: #563d7c;
+  color: #FFFFFF;
+}
+
+.navbar-custom .navbar-nav .nav-link {
+  color: #FFFFFF;
+}
+
+.navbar-brand {
+  color: #FFFFFF;
+}
+
+a:hover {
+  color: #FFF;
+}
+
+.footer {
+  margin-top: 20px;
+  padding: 10px;
+  color: #fff;
+  background: #563d7c;
+}
+

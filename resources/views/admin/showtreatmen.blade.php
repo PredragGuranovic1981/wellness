@@ -12,10 +12,14 @@
         <h5 class="card-title">{{$treatment->name}}</h5>
         <p class="card-text">{{$treatment->description}}</p>
       </div>
-      <div class="card-footer">
+      <div class="card-footer mb-2">
         <span class="text-muted">Cena: {{$treatment->price}} RSD</span>
-        <a href="admin/services/{{$treatment->id}}" class="btn btn-primary">Azuriraj</a>
       </div>
+      <a href="admin/services/{{$treatment->id}}/edit" class="btn btn-primary">Azuriraj</a>
+      {!! Form::open(['action' => ['AdminTreatmentsController@destroy', $treatment->id], 'method' =>'POST', 'class' => 'mt-1']) !!}
+        {{ Form::hidden('_method', 'DELETE') }}
+        {{ Form::Submit('Obrisi tretman', ['class' => 'btn btn-outline-danger btn-block']) }}
+      {!! Form::close() !!}
     </div>
     @endforeach
   </div>

@@ -38,4 +38,9 @@ class User extends Authenticatable
     ];
 
     protected $table = 'users';
+
+    public function reservations()
+    {
+        return $this->hasMany('App\Reservation');
+    }
 }

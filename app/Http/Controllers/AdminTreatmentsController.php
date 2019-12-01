@@ -7,6 +7,9 @@ use App\Treatment;
 
 class AdminTreatmentsController extends Controller
 {
+  public function __construct(){
+    $this->middleware('auth', ['except' => ['index', 'show']]);
+  }
   /**
    * Display a listing of the resource.
    *
@@ -38,7 +41,7 @@ class AdminTreatmentsController extends Controller
   {
     // validate
     $this->validate($request, ['name' => 'required']);
-    $this->validate($request, ['image' => 'image|max:1999']);
+    // $this->validate($request, ['image' => 'image|max:1999']);
     $this->validate($request, ['description' => 'required']);
     $this->validate($request, ['price' => 'required']);
 
@@ -53,7 +56,7 @@ class AdminTreatmentsController extends Controller
     $treatment->save();
 
     // redirektuj
-    return redirect('/store')->with('success', 'Tretmant je uspesno kreiran!');
+    return redirect('/showtreatmen')->with('success', 'Tretmant je uspesno kreiran!');
   }
 
   /**
@@ -64,8 +67,7 @@ class AdminTreatmentsController extends Controller
    */
   public function show($id)
   {
-    // $treatment = Treatment::find($id);
-    return view('admin.edittreatment', ['treatment' => Treatment::find($id)]);
+    //
   }
 
   /**
@@ -110,6 +112,8 @@ class AdminTreatmentsController extends Controller
    */
   public function destroy($id)
   {
-      //
+    $treatment = Treatment::find($id);
+    $treatment->delete();
+    return redirect()->back()->with('success', 'Tretman je uspesno obrisan!');
   }
 }

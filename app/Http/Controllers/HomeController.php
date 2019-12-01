@@ -43,12 +43,12 @@ class HomeController extends Controller
 
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches
-            return redirect()->back()->with("error","Your current password does not matches with the password you provided. Please try again.");
+            return redirect()->back()->with("error","Vasa trenutna lozinka ne odgovara onoj koji ste upisali. Molim Vas pokusajte ponovo.");
         }
 
         if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
             //Current password and new password are same
-            return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
+            return redirect()->back()->with("error","Vasa nova lozinka ne moze biti ista kao Vasa stara lozinka. Molim Vas odaberite drugu lozinku.");
         }
 
         $validatedData = $request->validate([
@@ -61,7 +61,7 @@ class HomeController extends Controller
         $user->password = bcrypt($request->get('new-password'));
         $user->save();
 
-        return redirect()->back()->with("success","Password changed successfully !");
+        return redirect()->back()->with("success","Uspesno ste promenili lozinku !");
 
     }
 
