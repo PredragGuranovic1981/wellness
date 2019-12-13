@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Poruke</h1>
+<h3>Poruke</h3>
 @if (count($messages)>0)
     @foreach ($messages as $message)
        <ul class="list-group mt-1">

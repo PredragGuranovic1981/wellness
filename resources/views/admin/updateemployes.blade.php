@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-  <h1>Azuriraj zaposlenog</h1>
+  <h3>Azuriraj zaposlenog</h3>
   {!! Form::open(['action' => ['EmployesController@update', $employe->id], 'method' =>'POST']) !!}
   <div class="form-group">
     <div class="form-group">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Treatment;
+use Carbon\Carbon;
 
 class AdminTreatmentsController extends Controller
 {
@@ -41,14 +42,25 @@ class AdminTreatmentsController extends Controller
   {
     // validate
     $this->validate($request, ['name' => 'required']);
-    // $this->validate($request, ['image' => 'image|max:1999']);
+    $this->validate($request, ['image' => 'image|max:1999']);
     $this->validate($request, ['description' => 'required']);
     $this->validate($request, ['price' => 'required']);
+
+    //uzimamo ime slike sa ekstenzijom
+    $fileNameWithExt = $request->file('image')->getClientOriginalName();
+    // sada uzimamo samo ime fajla
+    $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+    // sada uzimamo odbacenu ekstenziju
+    $extension = $request->file('image')->getClientOriginalExtension();
+    //sada kreiraj novo ime sa time stamp i svom konkatencijom
+    $filenameToStore = $filename . '_' . time() . '.' . $extension;
+    //sada da uploudujemo na server
+    $path = $request->file('image')-> storeAs('public/treatment_images', $filenameToStore);
 
     // Sada kreiramo Tretmant
     $treatment = new Treatment;
     $treatment->name = $request->input('name');
-    $treatment->image = $request->input('image');
+    $treatment->image = $filenameToStore;
     $treatment->description = $request->input('description');
     $treatment->price = $request->input('price');
 
@@ -93,6 +105,21 @@ class AdminTreatmentsController extends Controller
   public function update(Request $request, $id)
   {
     $treatment = Treatment::find($id);
+
+    if ($request->hasFile('image'))
+        {
+            $fileNameWithExt = $request->file('image')->getClientOriginalName();
+            // sada uzimamo samo ime fajla
+            $filename = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            // sada uzimamo odbacenu ekstenziju
+            $extension = $request->file('image')->getClientOriginalExtension();
+            //sada kreiraj novo ime sa time stamp i svom konkatencijom
+            $filenameToStore = $filename . '_' . time() . '.' . $extension;
+            //sada da uploudujemo na server
+            $path = $request->file('image')-> storeAs('public/treatment_images', $filenameToStore);
+            $treatment->image = $filenameToStore;
+        }
+
     $treatment->name = $request->input('name');
     $treatment->description = $request->input('description');
     $treatment->price = $request->input('price');

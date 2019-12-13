@@ -14,9 +14,9 @@ class Reservation extends Model
 
  public function reservations()
 {
-    return $this->belongsTo('App\Reservation');
+    return $this->belongsTo('App\User');
 }
 
    protected $table = 'reservations';
-   protected $fillable = array('treatment_id', 'employe_id', 'schedule');
+   protected $fillable = array('user_id', 'treatment_id', 'schedule_date', 'schedule_time');
 }

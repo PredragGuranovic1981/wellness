@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-  <h1>Kreiraj novi tretman</h1>
-  {!! Form::open(['action' => 'AdminTreatmentsController@store', 'method' =>'POST']) !!}
+  <h3>Kreiraj novi tretman</h3>
+  {!! Form::open(['action' => 'AdminTreatmentsController@store', 'method' =>'POST','files' => true]) !!}
   <div class="form-group">
     <div class="form-group">
       {{Form::label('name', 'Upisite naziv tretmana:')}}

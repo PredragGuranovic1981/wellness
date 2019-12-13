@@ -14,4 +14,7 @@
   <li class="nav-item">
     <a class="nav-link" href="/message">Poruke klijenata</a>
   </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/vouchers">Poruke vezane za vaučere</a>
+  </li>
 </ul>

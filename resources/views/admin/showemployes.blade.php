@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <h1>Zaposleni</h1>
+  <h3>Zaposleni</h3>
   <?php $brojac = 1; ?>
     <div class="container">
       <table class="table table-striped">

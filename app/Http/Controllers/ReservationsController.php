@@ -20,8 +20,8 @@ class ReservationsController extends Controller
      */
     public function index()
     {
-      $reservs = Treatment::join('reservations', 'reservations.id', '=', 'reservations.treatment_id')->select('reservations.id', 'reservations.schedule', 'treatments.name')->get();
-      return view('client.showscheduling')->with('reservs', $reservs);
+      $reservations = Treatment::join('reservations', 'treatments.id', '=', 'reservations.treatment_id')->get()->where('user_id', '=', auth()->user()->id);
+      return view('client.showscheduling')->with('reservations', $reservations);
     }
 
     /**
@@ -32,7 +32,7 @@ class ReservationsController extends Controller
     public function create()
     {
       $name = Treatment::with('reservations')->get()->pluck('name', 'id');
-      $user = User::with('reservations')->get()->pluck('name', 'id');
+      $user = User::with('reservations')->get()->pluck('name', auth()->user()->id);
       // $name = Treatment::join('reservations', 'treatments.id', '=', 'reservations.treatment_id')->join('users', 'users.id', '=', 'reservations.user_id')->pluck('treatments.name', 'users.name');
       return view('client.scheduling', ['name' => $name, 'user' => $user]);
 
@@ -46,13 +46,17 @@ class ReservationsController extends Controller
      */
     public function store(Request $request)
     {
+      $todayDate = date('d-m-Y');
+
       $this->validate($request, ['treatment_id' => 'required']);
-      $this->validate($request, ['schedule' => 'required']);
+      $this->validate($request, ['schedule_date' => 'required|after_or_equal:'.$todayDate]);
+      $this->validate($request, ['schedule_time' => 'required']);
 
       $reserve = new Reservation;
-      $reserve->treatment_id = $request->input('treatment_id');
       $reserve->user_id = $request->input('user_id');
-      $reserve->schedule = $request->input('schedule');
+      $reserve->treatment_id= $request->input('treatment_id');
+      $reserve->schedule_date = $request->input('schedule_date');
+      $reserve->schedule_time = $request->input('schedule_time');
 
       // Sada mi sacuvaj taj unos
       $reserve->save();
@@ -69,9 +73,7 @@ class ReservationsController extends Controller
      */
     public function show($id)
     {
-          // $treatment = Treatment::with('reservations')->get()->pluck('name', 'id');
-          $reserve = Reservation::find($id);
-          return view('client.showscheduling',)->with('reserve', $reserve);
+          //
     }
 
     /**

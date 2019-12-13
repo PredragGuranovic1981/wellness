@@ -28,8 +28,10 @@
       @include('inc.messages')
       @yield('content')
     </div>
+    @if(Request::is('/'))
     <footer  class="text-center footer">
       <p>Copyright 2019 &copy; Predrag Guranovic</p>
     </footer>
+    @endif
   </body>
 </html>

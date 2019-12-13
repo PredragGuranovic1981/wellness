@@ -1,9 +1,9 @@
-    <div class="justify-content-center pt-5">
+    <div class="justify-content-center">
       <div class="d-flex justify-content-center">
       <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
       </div>
       <div class="d-flex justify-content-center">
-      <h1>R O Y A L</h1>
+      <h1 id="royal">R O Y A L</h1>
       </div>
   </div>
   <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">

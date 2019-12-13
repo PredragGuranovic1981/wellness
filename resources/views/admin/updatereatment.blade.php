@@ -2,12 +2,16 @@
 
 @section('content')
 <div class="container">
-  <h1>Azuriraj tretman</h1>
-  {!! Form::open(['action' => ['AdminTreatmentsController@update', $treatment->id], 'method' =>'POST']) !!}
+  <h3>Azuriraj tretman</h3>
+  {!! Form::open(['action' => ['AdminTreatmentsController@update', $treatment->id], 'method' =>'POST','files' => true]) !!}
   <div class="form-group">
     <div class="form-group">
       {{Form::label('name', 'Upisite naziv tretmana:')}}
       {{ Form::input('text', 'name', $treatment->name, ['class' => 'form-control']) }}
+    </div>
+    <div class="form-group">
+      {{Form::label('image', 'Unesite sliku:')}}
+      {{ Form::file('image') }}
     </div>
     <div class="form-group">
       {{Form::label('description', 'Opisite tretman:')}}

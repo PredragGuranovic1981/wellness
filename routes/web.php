@@ -25,7 +25,9 @@ Route::get('/galery', 'UsersController@index');
 Route::get('/treatment', 'TreatmentsController@index');
 Route::resource('services', 'TreatmentsController');
 Route::get('/show/{id}','TreatmentsController@show');
+Route::get('/showscheduling','ReservationsController@index');
 Route::resource('client/reservation', 'ReservationsController');
+Route::resource('client/voucher', 'VouchersController');
 
 
 // rute za admina
@@ -34,6 +36,7 @@ Route::get('/showtreatmen', 'AdminTreatmentsController@index')->name('admin');
 Route::get('/showemployes', 'EmployesController@index')->name('admin');
 // Route::get('/showreservations', 'ReservationsController@index')->name('admin');
 Route::get('/message', 'MessageController@index')->name('admin');
+Route::get('/vouchers', 'VouchersController@index')->name('admin');
 Route::resource('admin/services', 'AdminTreatmentsController');
 Route::resource('admin', 'EmployesController');
 Route::resource('client', 'MessageController');

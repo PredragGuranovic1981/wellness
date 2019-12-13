@@ -2,11 +2,23 @@
 
 @section('content')
 <div class="container">
-  <p>Raspored zakazivanja</p>
-  <div class="card">
-  <div class="card-body">
-    <span>Tretman: {{$reserve->schedule}}</span>
-  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Tretman</th>
+        <th>Datum</th>
+        <th>Vreme</th>
+      </tr>
+    </thead>
+    <p>Raspored zakazivanja</p>
+    @foreach($reservations as $reservation)
+    <tr>
+      <td>{{$reservation->name}}</td>
+      <td>{{date('d-m-Y', strtotime($reservation->schedule_date))}}</td>
+      <td>{{$reservation->schedule_time}}</td>
+    </tr>
+  @endforeach
+  </table>
 </div>
-</div>
-  @endsection
+
+@endsection

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-  <h1>Kreiraj novog radnika</h1>
+  <h3>Kreiraj novog radnika</h3>
   {!! Form::open(['action' => 'EmployesController@store', 'method' =>'POST']) !!}
   <div class="form-group">
     <div class="form-group">

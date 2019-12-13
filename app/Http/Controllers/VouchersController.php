@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Message;
+use App\Voucher;
 
-class MessageController extends Controller
+class VouchersController extends Controller
 {
     public function __construct(){
-      $this->middleware('auth');
+    $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
@@ -17,8 +17,8 @@ class MessageController extends Controller
      */
     public function index()
     {
-        $messages = Message::all();
-        return view('admin.message')->with('messages', $messages);
+      $vouchers = Voucher::all();
+      return view('admin.showvoucher')->with('vouchers', $vouchers);
     }
 
     /**
@@ -28,7 +28,7 @@ class MessageController extends Controller
      */
     public function create()
     {
-        return view('createmessage');
+        return view('client.voucher');
     }
 
     /**
@@ -41,18 +41,22 @@ class MessageController extends Controller
     {
       $this->validate($request, ['name' => 'required']);
       $this->validate($request, ['email' => 'required']);
+      $this->validate($request, ['phone' => 'required']);
+      $this->validate($request, ['name_user' => 'required']);
 
       // Sada kreiramo Notes
-      $message = new Message;
-      $message->name = $request->input('name');
-      $message->email = $request->input('email');
-      $message->message = $request->input('message');
+      $voucher = new Voucher;
+      $voucher->name = $request->input('name');
+      $voucher->email = $request->input('email');
+      $voucher->phone = $request->input('phone');
+      $voucher->name_user = $request->input('name_user');
+      $voucher->address_user = $request->input('address_user');
 
       // Sada mi sacuvaj taj unos
-      $message->save();
+      $voucher->save();
 
       // redirektuj
-      return redirect('/contact')->with('success', 'Poruka je uspesno poslata');
+      return redirect('/client/voucher/create')->with('success', 'Poruka je uspesno poslata');
     }
 
     /**
@@ -97,8 +101,8 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-      $message = Message::find($id);
-      $message->delete();
-      return redirect('/message')->with('success', 'Poruka je uspesno obrisana!');
+      $voucher = Voucher::find($id);
+      $voucher->delete();
+      return redirect('/vouchers')->with('success', 'Vaučer je uspešno obrisan!');
     }
 }
