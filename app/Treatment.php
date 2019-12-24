@@ -16,6 +16,6 @@ class Treatment extends Model
       return $this->hasMany('App\Reservation');
   }
 
-    protected $table = 'treatments';
+    // protected $table = 'treatments';
     protected $fillable = array('name', 'image', 'description', 'price');
 }

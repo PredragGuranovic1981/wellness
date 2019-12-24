@@ -14,5 +14,6 @@
         <li class="list-group-item"><span class="text-muted">Cena: {{$treatment->price}} RSD</span></li>
       </ul>
     </div>
+    <p>Ukoliko zelite da rezervisete tretman registrujte se <a href="/register">ovde</a>.</p>
   </div>
 @endsection

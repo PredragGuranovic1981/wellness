@@ -7,6 +7,7 @@ use App\Reservation;
 use App\Treatment;
 use App\Employe;
 use App\User;
+use Auth;
 
 class ReservationsController extends Controller
 {
@@ -46,10 +47,9 @@ class ReservationsController extends Controller
      */
     public function store(Request $request)
     {
-      $todayDate = date('d-m-Y');
 
       $this->validate($request, ['treatment_id' => 'required']);
-      $this->validate($request, ['schedule_date' => 'required|after_or_equal:'.$todayDate]);
+      $this->validate($request, ['schedule_date' => 'required']);
       $this->validate($request, ['schedule_time' => 'required']);
 
       $reserve = new Reservation;
@@ -109,6 +109,8 @@ class ReservationsController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $reservation = Reservation::find($id);
+      $reservation->delete();
+      return redirect()->back()->with('success', 'Rezervacija je uspesno obrisana!');
     }
 }

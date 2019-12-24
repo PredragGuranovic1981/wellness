@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-  <h1>Zakazivanje</h1>
+  <h3>Zakazivanje</h3>
   {!! Form::open(['action' => 'ReservationsController@store', 'method' =>'POST']) !!}
   <div class="form-group">
     <div class="form-group invisible">
@@ -21,11 +21,10 @@
       <script>
           $('#dateTimepicker').datepicker({
               uiLibrary: 'bootstrap4',
-              modal: true,
-              footer: true,
-              format: 'dd/mm/yy',
+              format: 'yy/mm/dd',
               autoclose: true,
               todayHighlight: true
+
           });
       </script>
     </div>

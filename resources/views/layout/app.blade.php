@@ -6,7 +6,7 @@
 
     <!-- CSRF Token -->
     <!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
-    <title>Wellness &amp; Spa</title>
+    <title>Wellness & Spa</title>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">

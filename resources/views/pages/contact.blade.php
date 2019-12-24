@@ -11,10 +11,12 @@
         {!! Form::open(['action' => 'MessageController@store', 'method' =>'POST']) !!}
         <div class="form-group">
           <div class="form-group">
-            {{Form::label('name', 'Upisite Vase ime i prezime')}}
-            {{Form::text('name', '', ['class' => 'form-control','placeholder' => 'Upravo ovde'])}}
+            <span class="text-danger">*</span>
+            {{Form::label('name', 'Upisite Vase ime i prezime', ['class' => 'control-label'])}}
+            {{Form::text('name', '', ['class' => 'form-control','placeholder' => 'Ime prezime'])}}
           </div>
           <div class="form-group">
+            <span class="text-danger">*</span>
             {{Form::label('email', 'Upisite Vas e-mail')}}
             {{Form::text('email', '', ['class' => 'form-control', 'placeholder' => 'U ovom formatu: example@gmail.com'])}}
           </div>
@@ -47,7 +49,7 @@
       </address>
     </div>
     <div class="col-md-4">
-      <h4>Radno vreme:</h4>
+      <h4>Radno vreme</h4>
       <strong><span>od ponedeljka do nedelje:</span></strong><p> 10:00 - 20:00</p>
     </div>
   </div>

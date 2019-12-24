@@ -1,6 +1,6 @@
     <div class="justify-content-center">
       <div class="d-flex justify-content-center">
-      <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+      <!-- <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p> -->
       </div>
       <div class="d-flex justify-content-center">
       <h1 id="royal">R O Y A L</h1>

@@ -32,14 +32,15 @@ Route::resource('client/voucher', 'VouchersController');
 
 // rute za admina
 Route::get('admin/routes', 'HomeController@admin')->middleware('admin');
-Route::get('/showtreatmen', 'AdminTreatmentsController@index')->name('admin');
-Route::get('/showemployes', 'EmployesController@index')->name('admin');
-// Route::get('/showreservations', 'ReservationsController@index')->name('admin');
-Route::get('/message', 'MessageController@index')->name('admin');
-Route::get('/vouchers', 'VouchersController@index')->name('admin');
+Route::get('/showtreatmen', 'AdminTreatmentsController@index')->middleware('admin');
+Route::get('/showemployes', 'EmployesController@index')->middleware('admin');
+Route::get('/message', 'MessageController@index')->middleware('admin');
+Route::get('/vouchers', 'VouchersController@index')->middleware('admin');
+Route::get('/showreservations', 'AdminReservationsController@index')->middleware('admin');
 Route::resource('admin/services', 'AdminTreatmentsController');
 Route::resource('admin', 'EmployesController');
 Route::resource('client', 'MessageController');
+Route::resource('reservations', 'AdminReservationsController');
 
 // ruta za promenu lozinke
 Route::get('/changePassword','HomeController@showChangePasswordForm');

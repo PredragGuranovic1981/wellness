@@ -8,6 +8,7 @@
         <th>Tretman</th>
         <th>Datum</th>
         <th>Vreme</th>
+        <th></th>
       </tr>
     </thead>
     <p>Raspored zakazivanja</p>
@@ -16,6 +17,10 @@
       <td>{{$reservation->name}}</td>
       <td>{{date('d-m-Y', strtotime($reservation->schedule_date))}}</td>
       <td>{{$reservation->schedule_time}}</td>
+      <td>{!! Form::open(['action' => ['ReservationsController@destroy', $reservation->id], 'method' =>'POST']) !!}
+      {{ Form::hidden('_method', 'DELETE') }}
+      {{ Form::Submit('Otkazi rezervaciju', ['class' => 'btn btn-danger']) }}
+      {!! Form::close() !!}</td>
     </tr>
   @endforeach
   </table>

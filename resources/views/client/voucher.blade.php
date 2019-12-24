@@ -8,18 +8,22 @@
     {!! Form::open(['action' => 'VouchersController@store', 'method' =>'POST']) !!}
     <div class="form-group">
       <div class="form-group">
+        <span class="text-danger">*</span>
         {{Form::label('name', 'Ime i prezime naručioca vaučera:')}}
         {{ Form::input('text', 'name', null, ['class' => 'form-control']) }}
       </div>
       <div class="form-group">
+        <span class="text-danger">*</span>
         {{Form::label('email', 'Email naručioca vaučera:')}}
         {{ Form::input('text', 'email', null, ['class' => 'form-control']) }}
       </div>
       <div class="form-group">
+        <span class="text-danger">*</span>
         {{Form::label('phone', 'Telefon naručioca vaučera:')}}
         {{ Form::input('tel', 'phone', null, ['class' => 'form-control']) }}
       </div>
       <div class="form-group">
+        <span class="text-danger">*</span>
         {{Form::label('name_user', 'Ime i prezime korisnika vaučera:')}}
         {{ Form::input('text', 'name_user', null, ['class' => 'form-control']) }}
       </div>

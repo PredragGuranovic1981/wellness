@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Reservation;
+use App\Treatment;
+use App\Employe;
 use App\User;
+use Auth;
 
-
-class UsersController extends Controller
+class AdminReservationsController extends Controller
 {
+    public function __construct(){
+      $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +21,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::all();
-        return view('pages.galery')->with('users', $users);
+      $reservations = User::join('reservations', 'users.id', '=', 'reservations.user_id')->orderBy('schedule_date', 'desc')->get();
+      return view('admin.showreservations')->with('reservations', $reservations);
     }
 
     /**
@@ -48,7 +54,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-      
+        //
     }
 
     /**
@@ -82,6 +88,8 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+      $reservation = Reservation::find($id);
+      $reservation->delete();
+      return redirect()->back()->with('success', 'Rezervacija je uspesno obrisana!');
     }
 }

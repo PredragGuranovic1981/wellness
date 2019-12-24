@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Employe;
 use App\Treatment;
+use Auth;
 
 class EmployesController extends Controller
 {
     public function __construct(){
-    $this->middleware('auth');
+      if(auth()->check() && auth()->user()->is_admin == 1){
+          $this->middleware('auth');
+      }
     }
     /**
      * Display a listing of the resource.
@@ -41,7 +44,7 @@ class EmployesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['first_name' => 'required']);
+        $this->validate($request, ['first_name' => 'required', 'regex:/^[a-zA-Z]+$/']);
         $this->validate($request, ['last_name' => 'required']);
         $this->validate($request, ['treatment_id' => 'required']);
 
